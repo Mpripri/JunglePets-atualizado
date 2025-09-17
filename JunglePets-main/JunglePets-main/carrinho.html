@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>JunglePets - Carrinho</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .cart-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #22c55e;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        .cart-notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-beige-300 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-20">
+                <a class="flex items-center space-x-3" href="inicio.html">
+                    <img alt="Logo do site Exotic Pets" class="w-12 h-12 rounded-full" height="48" src="https://storage.googleapis.com/a1aa/image/509aaedc-ecc3-4850-7cf7-7aadcb8697d9.jpg" width="48"/>
+                    <span class="text-2xl font-bold text-green-900">JunglePets</span>
+                </a>
+                <ul class="hidden md:flex space-x-8 text-green-900 font-semibold items-center">
+                    <a href="inicio.html">Início</a>
+                    <a href="produtos.html">Produtos</a>
+                    <a href="sobre.html">Sobre</a>
+                    <a href="contato.html">Contato</a>
+                    <li>
+                        <button class="hover:text-beige-600 transition flex items-center relative mr-4" onclick="window.location.href='carrinho.html'">
+                            <i class="fas fa-shopping-cart mr-1"></i>
+                            Carrinho
+                            <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-1 text-xs ml-2 hidden">0</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="hover:text-beige-600 transition flex items-center" onclick="window.location.href='login.html'">
+                            <i class="fas fa-user mr-1"></i>
+                            Entrar
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Notificação do Carrinho -->
+    <div id="cart-notification" class="cart-notification">
+        Produto adicionado ao carrinho!
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 class="text-3xl font-bold text-green-900 mb-10 text-center">Seu Carrinho</h2>
+        <div class="max-w-4xl mx-auto">
+            <div id="cart-items" class="space-y-4 mb-8">
+                <!-- Itens do carrinho aparecerão aqui -->
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center text-xl font-bold text-green-900">
+                    <span>Total:</span>
+                    <span id="cart-total">R$ 0,00</span>
+                </div>
+                <button id="checkout-btn" class="w-full mt-4 bg-green-900 text-white py-3 rounded-md font-semibold hover:bg-green-800 transition disabled:bg-gray-400" onclick="checkout()" disabled>
+                    Finalizar Compra
+                </button>
+                
+                <!-- Botão extra: Limpar Carrinho -->
+                <button class="w-full mt-2 bg-red-600 text-white py-2 rounded-md font-semibold hover:bg-red-700 transition" onclick="carrinho = []; salvarCarrinho(); atualizarCarrinho();">
+                    Limpar Carrinho
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-beige-100 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm">© 2024 JunglePets Marketplace. Todos os direitos reservados.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a aria-label="Facebook" class="hover:text-beige-300 transition" href="#">
+                    <i class="fab fa-facebook fa-lg"></i>
+                </a>
+                <a aria-label="Instagram" class="hover:text-beige-300 transition" href="#">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a aria-label="Twitter" class="hover:text-beige-300 transition" href="#">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VINCULANDO O ARQUIVO carrinho.js -->
+    <script src="carrinho.js"></script>
+
+</body>
+</html>

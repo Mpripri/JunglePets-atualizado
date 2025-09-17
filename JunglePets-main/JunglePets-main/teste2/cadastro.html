@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JunglePets — Minha Conta</title>
+  <meta name="color-scheme" content="light" />
+  <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="nav">
+        <div class="brand" aria-label="JunglePets">
+          <div class="logo" aria-hidden="true"></div>
+          <span>JunglePets</span>
+        </div>
+        <nav>
+          <a href="junglepets_enhanced.html">Início</a>
+          &nbsp;•&nbsp;
+          <a href="#" aria-current="page">Minha Conta</a>
+          &nbsp;•&nbsp;
+          <a href="carrinho.html">Carrinho</a>
+        </nav>
+      </div>
+ 
+    </div>
+  </header>
+
+  <main class="container" style="margin:28px auto 40px;">
+    <div class="card">
+      <div class="card-header">
+        <div class="tabs" role="tablist" aria-label="Trocar entre Entrar e Criar conta">
+          <button class="tab" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login">Entrar</button>
+          <button class="tab" id="tab-register" role="tab" aria-selected="false" aria-controls="panel-register">Criar conta</button>
+        </div>
+        <div style="margin-left:auto" class="card-title">Minha Conta</div>
+      </div>
+      <div class="card-body grid">
+        <!-- Painel Login -->
+        <section id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+          <form id="loginForm" novalidate>
+            <div id="loginAlert" class="alert error" style="display:none" role="alert"></div>
+            <div>
+              <label for="loginEmail">E-mail</label>
+              <div class="input">
+                <input type="email" id="loginEmail" name="email" placeholder="voce@exemplo.com" autocomplete="email" required />
+              </div>
+            </div>
+            <div>
+              <label for="loginPassword">Senha</label>
+              <div class="input">
+                <input type="password" id="loginPassword" name="password" placeholder="••••••••" autocomplete="current-password" required minlength="6" />
+                <button class="suffix-btn" type="button" data-toggle="loginPassword">mostrar</button>
+              </div>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="remember" name="remember" />
+              <label for="remember">Continuar conectado</label>
+            </div>
+            <button class="btn" type="submit">Entrar</button>
+            <p class="hint">Esqueceu a senha? <a href="#" id="fakeReset">Recuperar acesso</a></p>
+          </form>
+        </section>
+
+        <!-- Painel Registro -->
+        <section id="panel-register" role="tabpanel" aria-labelledby="tab-register" hidden>
+          <form id="registerForm" novalidate>
+            <div id="regAlert" class="alert error" style="display:none" role="alert"></div>
+            <div class="row">
+              <div>
+                <label for="name">Nome completo</label>
+                <div class="input">
+                  <input type="text" id="name" name="name" placeholder="Ex.: Priscila Santos" autocomplete="name" required />
+                </div>
+              </div>
+              <div>
+                <label for="whats">WhatsApp (opcional)</label>
+                <div class="input">
+                  <input type="tel" id="whats" name="whats" inputmode="tel" placeholder="(11) 98888-7777" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="email">E-mail</label>
+                <div class="input">
+                  <input type="email" id="email" name="email" placeholder="voce@exemplo.com" autocomplete="email" required />
+                </div>
+              </div>
+              <div>
+                <label for="cpf">CPF (opcional)</label>
+                <div class="input">
+                  <input type="text" id="cpf" name="cpf" inputmode="numeric" pattern="\d{11}" placeholder="Apenas números" />
+                </div>
+                <div class="hint">Usado para nota fiscal e benefícios.</div>
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="password">Senha</label>
+                <div class="input">
+                  <input type="password" id="password" name="password" placeholder="Crie uma senha" autocomplete="new-password" required minlength="6" />
+                  <button class="suffix-btn" type="button" data-toggle="password">mostrar</button>
+                </div>
+                <div class="meter" aria-hidden="true"><i id="strengthBar"></i></div>
+                <div class="hint" id="strengthHint">Força da senha: —</div>
+              </div>
+              <div>
+                <label for="confirm">Confirmar senha</label>
+                <div class="input">
+                  <input type="password" id="confirm" name="confirm" placeholder="Repita a senha" required minlength="6" />
+                  <button class="suffix-btn" type="button" data-toggle="confirm">mostrar</button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <label for="pet">Seu pet exótico principal</label>
+              <div class="input">
+                <input list="petList" id="pet" name="pet" placeholder="Ex.: gecko leopardo" />
+                <datalist id="petList">
+                  <option value="Gecko Leopardo"></option>
+                  <option value="Pogona (Dragão Barbudos)"></option>
+                  <option value="Cobra do Milho"></option>
+                  <option value="Furão"></option>
+                  <option value="Calopsita"></option>
+                  <option value="Arara"></option>
+                  <option value="Tarantula"></option>
+                </datalist>
+              </div>
+              <div class="hint">Isso ajuda a personalizar ofertas para você.</div>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="terms" required />
+              <label for="terms">Eu li e aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>.</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="newsletter" />
+              <label for="newsletter">Quero receber ofertas e novidades da JunglePets por e-mail.</label>
+            </div>
+            <button class="btn" type="submit">Criar conta</button>
+            <button class="btn btn-ghost" type="button" id="toLogin">Já tenho conta</button>
+          </form>
+        </section>
+
+        <!-- Aside perks -->
+        <aside class="aside" aria-label="Vantagens">
+          <h4>Vantagens de criar sua conta</h4>
+          <div class="perk"><i>✓</i><div>
+            <strong>Rastreie pedidos</strong><br>
+            Acompanhe status e histórico de compras com facilidade.
+          </div></div>
+          <div class="perk"><i>★</i><div>
+            <strong>Clube Jungle</strong><br>
+            Ganhe pontos em compras para pets exóticos e troque por descontos.
+          </div></div>
+          <div class="perk"><i>⚡</i><div>
+            <strong>Checkout mais rápido</strong><br>
+            Salve endereços e preferências para finalizar em um clique.
+          </div></div>
+        </aside>
+      </div>
+    </div>
+
+    <p class="footer">© <span id="year"></span> JunglePets — Seu petshop de exóticos.</p>
+  </main>
+
+  <script src="cadastro.js"></script>
+</body>
+</html>
