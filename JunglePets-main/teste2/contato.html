@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>JunglePets - Petshop para Pets Exóticos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .cart-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #22c55e;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        .cart-notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Header / Navbar -->
+    <header class="border-b border-beige-300 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-20">
+                <a class="flex items-center space-x-3" href="#" onclick="showPage('home')">
+                    <img alt="Logo do site Exotic Pets" class="w-12 h-12 rounded-full" height="48" src="https://storage.googleapis.com/a1aa/image/509aaedc-ecc3-4850-7cf7-7aadcb8697d9.jpg" width="48"/>
+                    <span class="text-2xl font-bold text-green-900">JunglePets</span>
+                </a>
+                <ul class="hidden md:flex space-x-8 text-green-900 font-semibold items-center">
+                    <a href="inicio.html">Inicio</a>
+                    <a href="produtos.html">Produtos</a>
+                   <a href="sobre.html">Sobre</a>
+                   <a href="contato.html">Contato</a>
+                    <li>
+                       
+                        <button class="hover:text-beige-600 transition flex items-center relative mr-4" onclick="showPage('carrinho')" id="cart-btn">
+                            <i class="fas fa-shopping-cart mr-1"></i>
+                            Carrinho
+                            <span id="cart-count" class="bg-red-500 text-white rounded-full px-2 py-1 text-xs ml-2 hidden">0</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="hover:text-beige-600 transition flex items-center" onclick="showPage('login')" id="login-btn">
+                            <i class="fas fa-user mr-1"></i>
+                            <span id="user-display">Entrar</span>
+                        </button>
+                    </li>
+                </ul>
+                <button aria-label="Abrir menu" class="md:hidden text-green-900 focus:outline-none" id="btn-mobile-menu">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden bg-white border-t border-green-900" id="mobile-menu">
+            <ul class="flex flex-col p-4 space-y-4 text-green-900 font-semibold">
+                <li><a class="block hover:text-beige-600 transition cursor-pointer" onclick="showPage('home')">Início</a></li>
+                <li><a class="block hover:text-beige-600 transition cursor-pointer" onclick="showPage('produtos')">Produtos</a></li>
+                <li><a class="block hover:text-beige-600 transition cursor-pointer" onclick="showPage('sobre')">Sobre</a></li>
+                <li><a class="block hover:text-beige-600 transition cursor-pointer" onclick="showPage('contato')">Contato</a></li>
+                <li><a class="block hover:text-beige-600 transition cursor-pointer" onclick="showPage('carrinho')">Carrinho</a></li>
+                <li><a class="block hover:text-beige-600 transition cursor-pointer" onclick="showPage('login')">Entrar</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Notificação do Carrinho -->
+    <div id="cart-notification" class="cart-notification">
+        Produto adicionado ao carrinho!
+    </div>
+
+    <!-- Main Content Container -->
+    <div id="main-content">
+        <!-- Home Page -->
+        <div id="page-home" class="page">
+            <!-- Hero Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-green-900 leading-tight">
+                        Seu Marketplace de Pets Exóticos
+                    </h1>
+                    <p class="mt-6 text-lg text-green-800 max-w-md">
+                        Encontre tudo para cuidar do seu pet exótico com qualidade, segurança e carinho. Produtos, acessórios e muito mais!
+                    </p>
+                    <button class="inline-block mt-8 px-8 py-3 bg-green-900 text-beige-100 font-semibold rounded-md shadow-md hover:bg-green-800 transition" onclick="showPage('produtos')">
+                        Ver Produtos
+                    </button>
+                </div>
+                <div class="md:w-1/2">
+                    <img alt="Papagaio exótico colorido" class="rounded-lg shadow-lg mx-auto" height="400" src="https://storage.googleapis.com/a1aa/image/b1b5a994-3925-484e-7c03-7baa39b0c740.jpg" width="600"/>
+                </div>
+            </section>
+        </div>
+
+        <!-- Produtos Page -->
+        <div id="page-produtos" class="page">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h2 class="text-3xl font-bold text-green-900 mb-10 text-center">Produtos em Destaque</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8" id="produtos-grid">
+                    <!-- Produtos serão carregados aqui -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Carrinho Page -->
+        <div id="page-carrinho" class="page hidden">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h2 class="text-3xl font-bold text-green-900 mb-10 text-center">Seu Carrinho</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div id="cart-items" class="space-y-4 mb-8">
+                        <!-- Itens do carrinho aparecerão aqui -->
+                    </div>
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between items-center text-xl font-bold text-green-900">
+                            <span>Total:</span>
+                            <span id="cart-total">R$ 0,00</span>
+                        </div>
+                        <button id="checkout-btn" class="w-full mt-4 bg-green-900 text-white py-3 rounded-md font-semibold hover:bg-green-800 transition disabled:bg-gray-400" onclick="checkout()" disabled>
+                            Finalizar Compra
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Login/Cadastro Page -->
+        <div id="page-login" class="page hidden">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+                    <h2 class="text-2xl font-bold text-green-900 mb-6 text-center" id="form-title">Entrar</h2>
+                    
+                    <!-- Login Form -->
+                    <form id="login-form" class="space-y-4">
+                        <div>
+                            <label class="block text-green-900 font-semibold mb-2" for="login-email">E-mail</label>
+                            <input class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                                   id="login-email" name="email" placeholder="seuemail@exemplo.com" required type="email"/>
+                        </div>
+                        <div>
+                            <label class="block text-green-900 font-semibold mb-2" for="login-password">Senha</label>
+                            <input class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                                   id="login-password" name="password" placeholder="Sua senha" required type="password"/>
+                        </div>
+                        <button class="w-full bg-green-900 text-white py-2 rounded-md font-semibold hover:bg-green-800 transition" type="submit">
+                            Entrar
+                        </button>
+                    </form>
+
+                    <!-- Cadastro Form -->
+                    <form id="register-form" class="space-y-4 hidden">
+                        <div>
+                            <label class="block text-green-900 font-semibold mb-2" for="register-name">Nome Completo</label>
+                            <input class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                                   id="register-name" name="name" placeholder="Seu nome completo" required type="text"/>
+                        </div>
+                        <div>
+                            <label class="block text-green-900 font-semibold mb-2" for="register-email">E-mail</label>
+                            <input class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                                   id="register-email" name="email" placeholder="seuemail@exemplo.com" required type="email"/>
+                        </div>
+                        <div>
+                            <label class="block text-green-900 font-semibold mb-2" for="register-password">Senha</label>
+                            <input class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                                   id="register-password" name="password" placeholder="Escolha uma senha" required type="password"/>
+                        </div>
+                        <div>
+                            <label class="block text-green-900 font-semibold mb-2" for="register-confirm">Confirmar Senha</label>
+                            <input class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                                   id="register-confirm" name="confirmPassword" placeholder="Confirme sua senha" required type="password"/>
+                        </div>
+                        <button class="w-full bg-green-900 text-white py-2 rounded-md font-semibold hover:bg-green-800 transition" type="submit">
+                            Cadastrar
+                        </button>
+                    </form>
+
+                    <!-- Toggle buttons -->
+                    <div class="mt-6 text-center">
+                        <button id="toggle-to-register" class="text-green-900 hover:underline" onclick="toggleForm()">
+                            Não tem conta? Cadastre-se
+                        </button>
+                        <button id="toggle-to-login" class="text-green-900 hover:underline hidden" onclick="toggleForm()">
+                            Já tem conta? Entre
+                        </button>
+                    </div>
+
+                    <!-- User Profile (when logged in) -->
+                    <div id="user-profile" class="hidden">
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold text-green-900 mb-4">Bem-vindo(a)!</h3>
+                            <p class="text-green-800 mb-4" id="user-email"></p>
+                            <button class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition" onclick="logout()">
+                                Sair
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sobre Page -->
+        <div id="page-sobre" class="page hidden">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-beige-50 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-green-900 mb-8 text-center">Sobre Nós</h2>
+                <div class="max-w-4xl mx-auto text-green-800 text-lg leading-relaxed space-y-6">
+                    <p>Somos um marketplace dedicado exclusivamente a pets exóticos, oferecendo produtos de alta qualidade para garantir o bem-estar e a felicidade dos seus animais. Nossa missão é conectar apaixonados por pets exóticos a fornecedores confiáveis e especializados.</p>
+                    <p>Com uma equipe experiente e apaixonada, buscamos sempre inovar e trazer as melhores soluções para o cuidado dos seus pets, desde acessórios, alimentação até cuidados especiais.</p>
+                    <p>Venha fazer parte da nossa comunidade e descubra um mundo de possibilidades para o seu pet exótico!</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contato Page -->
+        <div id="page-contato" class="page hidden">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h2 class="text-3xl font-bold text-green-900 mb-8 text-center">Fale Conosco</h2>
+                <form action="#" class="max-w-3xl mx-auto bg-beige-50 p-8 rounded-lg shadow-md space-y-6" method="POST" onsubmit="handleContact(event)">
+                    <div>
+                        <label class="block text-green-900 font-semibold mb-2" for="nome">Nome Completo</label>
+                        <input class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                               id="nome" name="nome" placeholder="Seu nome completo" required type="text"/>
+                    </div>
+                    <div>
+                        <label class="block text-green-900 font-semibold mb-2" for="email">E-mail</label>
+                        <input class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                               id="email" name="email" placeholder="seuemail@exemplo.com" required type="email"/>
+                    </div>
+                    <div>
+                        <label class="block text-green-900 font-semibold mb-2" for="mensagem">Mensagem</label>
+                        <textarea class="w-full border border-green-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-900" 
+                                  id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui" required rows="5"></textarea>
+                    </div>
+                    <button class="bg-green-900 text-beige-100 px-6 py-3 rounded-md font-semibold hover:bg-green-800 transition" type="submit">
+                        Enviar Mensagem
+                    </button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-beige-100 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm">© 2024 JunglePets Marketplace. Todos os direitos reservados.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a aria-label="Facebook" class="hover:text-beige-300 transition" href="#">
+                    <i class="fab fa-facebook fa-lg"></i>
+                </a>
+                <a aria-label="Instagram" class="hover:text-beige-300 transition" href="#">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a aria-label="Twitter" class="hover:text-beige-300 transition" href="#">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados dos produtos
+        const produtos = [
+            {
+                id: 1,
+                nome: "Terrário para Répteis",
+                preco: 350.00,
+                imagem: "https://storage.googleapis.com/a1aa/image/c3ca8b5b-1351-4a97-c1cf-8f347bcab9e1.jpg",
+                descricao: "Terrário espaçoso e seguro para répteis, com ventilação e iluminação ideais."
+            },
+            {
+                id: 2,
+                nome: "Ração para Papagaios",
+                preco: 120.00,
+                imagem: "https://storage.googleapis.com/a1aa/image/e45e50e2-bb8f-4b71-f0ba-7fbc5b9f418c.jpg",
+                descricao: "Ração balanceada e nutritiva para papagaios e aves exóticas."
+            },
+            {
+                id: 3,
+                nome: "Brinquedo para Hamsters",
+                preco: 80.00,
+                imagem: "https://storage.googleapis.com/a1aa/image/6e826888-4917-47a3-b090-7920d1a816c1.jpg",
+                descricao: "Brinquedo interativo para hamsters, estimulando o exercício e diversão."
+            },
+            {
+                id: 4,
+                nome: "Gaiola para Furão",
+                preco: 450.00,
+                imagem: "https://storage.googleapis.com/a1aa/image/ea85bcbd-3878-46fc-8cfd-225c17be0896.jpg",
+                descricao: "Gaiola espaçosa e segura para furões, com acessórios inclusos."
+            },
+            {
+                id: 5,
+                nome: "Suplemento para Répteis",
+                preco: 90.00,
+                imagem: "https://storage.googleapis.com/a1aa/image/9ba8508c-62cc-4784-c94f-459fff5273f2.jpg",
+                descricao: "Suplemento vitamínico para garantir saúde e vitalidade dos répteis."
+            },
+            {
+                id: 6,
+                nome: "Casa para Porquinhos da Índia",
+                preco: 180.00,
+                imagem: "https://storage.googleapis.com/a1aa/image/63b27b7a-ce9c-417d-fdb6-5cab5de34913.jpg",
+                descricao: "Casa confortável e segura para porquinhos da índia e pequenos roedores."
+            },
+            {
+                id: 7,
+                nome: "Kit de Limpeza para Aquários",
+                preco: 75.00,
+                imagem: "https://storage.googleapis.com/a1aa/image/ce92c06f-91cf-472d-91d1-77e818c4ae58.jpg",
+                descricao: "Kit completo para manter o aquário do seu anfíbio sempre limpo e saudável."
+            }
+        ];
+
+        // Estado da aplicação
+        let carrinho = [];
+        let usuario = null;
+        let usuarios = []; // Array para armazenar usuários cadastrados
+        let paginaAtual = 'home';
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarProdutos();
+            verificarUsuarioLogado();
+            showPage('home');
+            
+            // Mobile menu
+            const btnMobileMenu = document.getElementById('btn-mobile-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            btnMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Forms
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('register-form').addEventListener('submit', handleRegister);
+        });
+
+        // Navegação
+        function showPage(page) {
+            // Esconder todas as páginas
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            
+            // Mostrar a página selecionada
+            const targetPage = document.getElementById(`page-${page}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                paginaAtual = page;
+            }
+        }
+
+        // Carregar produtos na página
+        function carregarProdutos() {
+            const grid = document.getElementById('produtos-grid');
+            grid.innerHTML = '';
+            
+            produtos.forEach(produto => {
+                const produtoHTML = `
+                    <article class="border border-green-900 rounded-lg p-4 flex flex-col">
+                        <img alt="${produto.nome}" class="rounded-md mb-4 object-cover h-48 w-full" 
+                             src="${produto.imagem}"/>
+                        <h3 class="text-xl font-semibold text-green-900 mb-2">${produto.nome}</h3>
+                        <p class="text-green-800 flex-grow">${produto.descricao}</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="text-green-900 font-bold text-lg">
+                                R$ ${produto.preco.toFixed(2).replace('.', ',')}
+                            </span>
+                            <button class="bg-green-900 text-beige-100 px-3 py-1 rounded hover:bg-green-800 transition"
+                                    onclick="adicionarAoCarrinho(${produto.id})">
+                                Comprar
+                            </button>
+                        </div>
+                    </article>
+                `;
+                grid.innerHTML += produtoHTML;
+            });
+        }
+
+        // Sistema de Carrinho
+        function adicionarAoCarrinho(produtoId) {
+            const produto = produtos.find(p => p.id === produtoId);
+            if (!produto) return;
+
+            const itemExistente = carrinho.find(item => item.id === produtoId);
+            
+            if (itemExistente) {
+                itemExistente.quantidade++;
+            } else {
+                carrinho.push({
+                    ...produto,
+                    quantidade: 1
+                });
+            }
+
+            atualizarCarrinho();
+            mostrarNotificacao();
+        }
+
+        function removerDoCarrinho(produtoId) {
+            carrinho = carrinho.filter(item => item.id !== produtoId);
+            atualizarCarrinho();
+        }
+
+        function alterarQuantidade(produtoId, novaQuantidade) {
+            if (novaQuantidade <= 0) {
+                removerDoCarrinho(produtoId);
+                return;
+            }
+
+            const item = carrinho.find(item => item.id === produtoId);
+            if (item) {
+                item.quantidade = novaQuantidade;
+                atualizarCarrinho();
+            }
+        }
+
+        function atualizarCarrinho() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            const totalItens = carrinho.reduce((sum, item) => sum + item.quantidade, 0);
+            const total = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+
+            // Atualizar contador do carrinho
+            if (totalItens > 0) {
+                cartCount.textContent = totalItens;
+                cartCount.classList.remove('hidden');
+            } else {
+                cartCount.classList.add('hidden');
+            }
+
+            // Atualizar itens do carrinho
+            if (carrinho.length === 0) {
+                cartItems.innerHTML = '<p class="text-center text-gray-600">Seu carrinho está vazio</p>';
+                checkoutBtn.disabled = true;
+            } else {
+                cartItems.innerHTML = carrinho.map(item => `
+                    <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
+                        <div class="flex items-center space-x-4">
+                            <img src="${item.imagem}" alt="${item.nome}" class="w-16 h-16 object-cover rounded">
+                            <div>
+                                <h4 class="font-semibold text-green-900">${item.nome}</h4>
+                                <p class="text-green-800">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="alterarQuantidade(${item.id}, ${item.quantidade - 1})" 
+                                    class="bg-gray-300 px-2 py-1 rounded">-</button>
+                            <span class="mx-2">${item.quantidade}</span>
+                            <button onclick="alterarQuantidade(${item.id}, ${item.quantidade + 1})" 
+                                    class="bg-gray-300 px-2 py-1 rounded">+</button>
+                            <button onclick="removerDoCarrinho(${item.id})" 
+                                    class="bg-red-500 text-white px-2 py-1 rounded ml-2">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                checkoutBtn.disabled = false;
+            }
+
+            // Atualizar total
+            cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function mostrarNotificacao() {
+            const notification = document.getElementById('cart-notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        function checkout() {
+            if (carrinho.length === 0) return;
+            
+            alert(`Compra finalizada!\nTotal: R$ ${carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0).toFixed(2).replace('.', ',')}`);
+            carrinho = [];
+            atualizarCarrinho();
+        }
+
+        // Sistema de Login/Cadastro
+        function toggleForm() {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const formTitle = document.getElementById('form-title');
+            const toggleToRegister = document.getElementById('toggle-to-register');
+            const toggleToLogin = document.getElementById('toggle-to-login');
+
+            if (loginForm.classList.contains('hidden')) {
+                // Mostrar login
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                formTitle.textContent = 'Entrar';
+                toggleToRegister.classList.remove('hidden');
+                toggleToLogin.classList.add('hidden');
+            } else {
+                // Mostrar cadastro
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                formTitle.textContent = 'Cadastrar';
+                toggleToRegister.classList.add('hidden');
+                toggleToLogin.classList.remove('hidden');
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            const user = usuarios.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                usuario = user;
+                atualizarInterfaceUsuario();
+                alert('Login realizado com sucesso!');
+            } else {
+                alert('E-mail ou senha incorretos!');
+            }
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm').value;
+
+            if (password !== confirmPassword) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+
+            if (usuarios.find(u => u.email === email)) {
+                alert('E-mail já cadastrado!');
+                return;
+            }
+
+            const novoUsuario = { name, email, password };
+            usuarios.push(novoUsuario);
+            usuario = novoUsuario;
+            
+            atualizarInterfaceUsuario();
+            alert('Cadastro realizado com sucesso!');
+        }
+
+        function atualizarInterfaceUsuario() {
+            const loginBtn = document.getElementById('login-btn');
+            const userDisplay = document.getElementById('user-display');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const userProfile = document.getElementById('user-profile');
+            const userEmail = document.getElementById('user-email');
+
+            if (usuario) {
+                userDisplay.innerHTML = `<i class="fas fa-user mr-1"></i>${usuario.name.split(' ')[0]}`;
+                loginForm.classList.add('hidden');
+                registerForm.classList.add('hidden');
+                userProfile.classList.remove('hidden');
+                userEmail.textContent = usuario.email;
+            } else {
+                userDisplay.innerHTML = '<i class="fas fa-user mr-1"></i>Entrar';
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                userProfile.classList.add('hidden');
+            }
+        }
+
+        function logout() {
+            usuario = null;
+            atualizarInterfaceUsuario();
+            showPage('home');
+            alert('Você foi desconectado!');
+        }
+
+        function verificarUsuarioLogado() {
+            // Em uma aplicação real, você verificaria um token ou sessão
+            atualizarInterfaceUsuario();
+        }
+
+        function handleContact(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const mensagem = document.getElementById('mensagem').value;
+            
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            document.getElementById('nome').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('mensagem').value = '';
+        }

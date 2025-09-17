@@ -1,0 +1,231 @@
+/* cadastro.css */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Container principal */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #1b4d3e;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.nav a:hover {
+  color: #8a6f3f;
+}
+
+.brand span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1b4d3e;
+}
+
+.breadcrumbs {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Card */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #1b4d3e;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  padding: 8px 16px;
+  border: 1px solid #1b4d3e;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  color: #1b4d3e;
+}
+
+.tab[aria-selected="true"] {
+  background-color: #1b4d3e;
+  color: #fff;
+}
+
+.tab:hover {
+  background-color: #2a6b58;
+  color: #fff;
+}
+
+/* Grid corpo */
+.card-body.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* Formulários */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form label {
+  font-weight: bold;
+  color: #1b4d3e;
+  margin-bottom: 5px;
+}
+
+.input input,
+.input select,
+.input textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.input input:focus {
+  border-color: #1b4d3e;
+  outline: none;
+}
+
+/* Botões */
+.btn {
+  padding: 10px 20px;
+  background-color: #1b4d3e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #2a6b58;
+}
+
+.btn-ghost {
+  background-color: #fff;
+  border: 1px solid #1b4d3e;
+  color: #1b4d3e;
+}
+
+.btn-ghost:hover {
+  background-color: #1b4d3e;
+  color: #fff;
+}
+
+/* Checkbox */
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+/* Hint */
+.hint {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Aside perks */
+.aside {
+  background-color: #fdf8f0;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aside h4 {
+  color: #1b4d3e;
+  margin-bottom: 10px;
+}
+
+.perk {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.perk i {
+  font-style: normal;
+  color: #8a6f3f;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  color: #666;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .card-body.grid {
+    grid-template-columns: 1fr;
+  }
+}
